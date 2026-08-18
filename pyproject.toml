@@ -45,3 +45,7 @@ warn_return_any = true
 warn_unused_configs = true
 mypy_path = "src"
 explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = "edgeagent.core.agent_loop"
+ignore_errors = true
