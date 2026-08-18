@@ -35,7 +35,8 @@ class EdgeAutonomousAgent:
         prompt = (
             f"URGENT: Sensor {sensor_id} has breached critical thresholds. "
             f"Current value is {value}, which is above the safe limit of {threshold}. "
-            "Use your tools to query historical context if needed, trigger alarms, or shutdown the machine to prevent a fire."
+            "Use your tools to query historical context if needed, trigger alarms, "
+            "or shutdown the machine to prevent a fire."
         )
         try:
             # Using synchronous invoke inside an async context for simplicity, 

@@ -12,8 +12,11 @@ class ShutdownMachineInput(BaseModel):
 
 class ShutdownMachineTool(BaseTool): # type: ignore[override, misc]
     name: str = "shutdown_machine"
-    description: str = "Use this tool to issue an emergency shutdown command to a physical machine when dangerous anomalies are detected."
-    args_schema: type[BaseModel] = ShutdownMachineInput
+    description: str = (
+        "Use this tool to issue an emergency shutdown command to a "
+        "physical machine when dangerous anomalies are detected."
+    )
+    args_schema: Type[BaseModel] = ShutdownMachineInput
 
     def _run(self, machine_id: str, reason: str, run_manager: Any | None = None) -> str:
         logger.warning("EXECUTING PHYSICAL TOOL: SHUTDOWN_MACHINE", machine_id=machine_id, reason=reason)
@@ -26,8 +29,11 @@ class TriggerAlarmInput(BaseModel):
 
 class TriggerAlarmTool(BaseTool): # type: ignore[override, misc]
     name: str = "trigger_alarm"
-    description: str = "Use this tool to sound physical sirens and flashing lights in a specific factory zone to alert human operators."
-    args_schema: type[BaseModel] = TriggerAlarmInput
+    description: str = (
+        "Use this tool to sound physical sirens and flashing lights "
+        "in a specific factory zone to alert human operators."
+    )
+    args_schema: Type[BaseModel] = TriggerAlarmInput
 
     def _run(self, zone: str, severity: str, run_manager: Any | None = None) -> str:
         logger.warning("EXECUTING PHYSICAL TOOL: TRIGGER_ALARM", zone=zone, severity=severity)

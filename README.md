@@ -54,9 +54,9 @@ graph TD
     Tools -->|Send Control Signal| Machines
     Tools -->|Trigger Alert| Alarms
     
-    classDef floor fill:#f0fdf4,stroke:#166534,stroke-width:2px;
-    classDef agent fill:#f9f0ff,stroke:#6b21a8,stroke-width:2px;
-    classDef llm fill:#fef3c7,stroke:#b45309,stroke-width:2px;
+    classDef floor fill:#f0fdf4,stroke:#166534,stroke-width:2px,color:#000000;
+    classDef agent fill:#f9f0ff,stroke:#6b21a8,stroke-width:2px,color:#000000;
+    classDef llm fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#000000;
     
     class Sensors,Machines,Alarms floor;
     class EventLoop,ReAct,Tools,MQTT agent;
