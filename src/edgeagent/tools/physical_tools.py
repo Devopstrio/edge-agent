@@ -1,7 +1,7 @@
 from typing import Any
 
 import structlog
-from langchain.pydantic_v1 import BaseModel, Field
+from pydantic import BaseModel, Field
 from langchain.tools import BaseTool
 
 logger = structlog.get_logger()
@@ -10,7 +10,7 @@ class ShutdownMachineInput(BaseModel):
     machine_id: str = Field(description="The ID of the physical machine to shutdown")
     reason: str = Field(description="The reason for the emergency shutdown")
 
-class ShutdownMachineTool(BaseTool): # type: ignore[override, misc]
+class ShutdownMachineTool(BaseTool):
     name: str = "shutdown_machine"
     description: str = (
         "Use this tool to issue an emergency shutdown command to a "
@@ -27,7 +27,7 @@ class TriggerAlarmInput(BaseModel):
     zone: str = Field(description="The factory zone where the alarm should sound")
     severity: str = Field(description="Severity level of the alarm (LOW, MEDIUM, HIGH, CRITICAL)")
 
-class TriggerAlarmTool(BaseTool): # type: ignore[override, misc]
+class TriggerAlarmTool(BaseTool):
     name: str = "trigger_alarm"
     description: str = (
         "Use this tool to sound physical sirens and flashing lights "
@@ -42,7 +42,7 @@ class TriggerAlarmTool(BaseTool): # type: ignore[override, misc]
 class QuerySensorDatabaseInput(BaseModel):
     sensor_id: str = Field(description="The ID of the sensor to query")
 
-class QuerySensorDatabaseTool(BaseTool): # type: ignore[override, misc]
+class QuerySensorDatabaseTool(BaseTool):
     name: str = "query_sensor_database"
     description: str = "Use this tool to lookup the last 5 minutes of historical context for a specific sensor."
     args_schema: type[BaseModel] = QuerySensorDatabaseInput

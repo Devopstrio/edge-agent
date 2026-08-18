@@ -14,18 +14,17 @@ LOCAL_LLM_URL = os.getenv("LOCAL_LLM_URL", "http://edge-runtime:8080/v1")
 class EdgeAutonomousAgent:
     def __init__(self) -> None:
         self.tools = get_edge_tools()
-        # Initialize Langchain OpenAI client to hit our Local LLM
         self.llm = ChatOpenAI(
-            openai_api_base=LOCAL_LLM_URL,
-            openai_api_key="local-edge-key", # Local endpoints don't need real keys
-            model_name="local-edge-model",
+            base_url=LOCAL_LLM_URL,
+            api_key="local-edge-key", # type: ignore[call-arg]
+            model="local-edge-model", # type: ignore[call-arg]
             temperature=0.1
         )
         
-        self.agent = initialize_agent(
+        self.agent = initialize_agent(  # type: ignore[attr-defined]
             self.tools,
             self.llm,
-            agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,
+            agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,  # type: ignore[attr-defined]
             verbose=True,
             handle_parsing_errors=True
         )
