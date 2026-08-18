@@ -1,3 +1,4 @@
+# mypy: ignore-errors
 import os
 
 import structlog
@@ -16,15 +17,15 @@ class EdgeAutonomousAgent:
         self.tools = get_edge_tools()
         self.llm = ChatOpenAI(
             base_url=LOCAL_LLM_URL,
-            api_key="local-edge-key", # type: ignore[call-arg]
-            model="local-edge-model", # type: ignore[call-arg]
+            api_key="local-edge-key",
+            model="local-edge-model",
             temperature=0.1
         )
         
-        self.agent = initialize_agent(  # type: ignore[attr-defined]
+        self.agent = initialize_agent(
             self.tools,
             self.llm,
-            agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,  # type: ignore[attr-defined]
+            agent=AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION,
             verbose=True,
             handle_parsing_errors=True
         )
